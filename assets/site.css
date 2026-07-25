@@ -215,3 +215,37 @@ h1{font-family:var(--disp); font-weight:800; margin:0;
   .method-list{display:block}
   *{transition-duration:.001ms !important}
 }
+
+/* --- 네이티브 스크롤 타임라인 --- */
+@supports ((animation-timeline: scroll()) and (animation-range: 0% 100%)){
+  .book-track{view-timeline:--book block}
+  .leaf{animation:none}
+  @keyframes flipA{0%{transform:rotateY(0) translateZ(2px)} 50%{transform:rotateY(-90deg) translateZ(22px)} 100%{transform:rotateY(-180deg) translateZ(-.5px)}}
+  @keyframes flipB{0%{transform:rotateY(0) translateZ(1.5px)} 50%{transform:rotateY(-90deg) translateZ(22px)} 100%{transform:rotateY(-180deg) translateZ(-1px)}}
+  @keyframes flipC{0%{transform:rotateY(0) translateZ(1px)} 50%{transform:rotateY(-90deg) translateZ(22px)} 100%{transform:rotateY(-180deg) translateZ(-1.5px)}}
+  @keyframes flipD{0%{transform:rotateY(0) translateZ(.5px)} 50%{transform:rotateY(-90deg) translateZ(22px)} 100%{transform:rotateY(-180deg) translateZ(-2px)}}
+  @keyframes sheen{0%{opacity:0} 45%{opacity:1} 100%{opacity:0}}
+  .leaf-1{animation:flipA auto linear both; animation-timeline:--book; animation-range:contain 6% contain 27%}
+  .leaf-2{animation:flipB auto linear both; animation-timeline:--book; animation-range:contain 28% contain 49%}
+  .leaf-3{animation:flipC auto linear both; animation-timeline:--book; animation-range:contain 50% contain 71%}
+  .leaf-4{animation:flipD auto linear both; animation-timeline:--book; animation-range:contain 72% contain 93%}
+  .leaf-1 .sheen{animation:sheen auto linear both; animation-timeline:--book; animation-range:contain 6% contain 27%}
+  .leaf-2 .sheen{animation:sheen auto linear both; animation-timeline:--book; animation-range:contain 28% contain 49%}
+  .leaf-3 .sheen{animation:sheen auto linear both; animation-timeline:--book; animation-range:contain 50% contain 71%}
+  .leaf-4 .sheen{animation:sheen auto linear both; animation-timeline:--book; animation-range:contain 72% contain 93%}
+  /* 펄럭임: 관절이 시간차로 회전하며 물결이 지나감 (5관절 누적 ≈ ±30°) */
+  @keyframes curl{
+    0%{transform:rotateY(0)}
+    15%{transform:rotateY(6.5deg)}
+    40%{transform:rotateY(-7.5deg)}
+    65%{transform:rotateY(4deg)}
+    85%{transform:rotateY(-2deg)}
+    100%{transform:rotateY(0)}
+  }
+  .leaf-1 .slat{animation:curl auto linear both; animation-timeline:--book; animation-range:contain 6% contain 27%}
+  .leaf-2 .slat{animation:curl auto linear both; animation-timeline:--book; animation-range:contain 28% contain 49%}
+  .leaf-3 .slat{animation:curl auto linear both; animation-timeline:--book; animation-range:contain 50% contain 71%}
+  .leaf-4 .slat{animation:curl auto linear both; animation-timeline:--book; animation-range:contain 72% contain 93%}
+}
+/* JS 폴백용 초기 z (네이티브 미지원 시 JS가 transform 직접 제어) */
+.leaf-1{z-index:9}.leaf-2{z-index:8}.leaf-3{z-index:7}.leaf-4{z-index:6}
