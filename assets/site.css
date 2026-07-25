@@ -83,3 +83,52 @@ h1{font-family:var(--disp); font-weight:800; margin:0;
 @media (max-width:860px){
   .hero-rule{left:78%}
 }
+
+/* ============ 주요 서비스 ============ */
+.services{border-bottom:1px solid var(--ink)}
+.svc-grid{display:grid; grid-template-columns:repeat(3,1fr)}
+.svc{padding:30px clamp(18px,2.4vw,34px) 38px; border-left:1px solid var(--hair)}
+.svc:first-child{border-left:none; padding-left:0}
+.svc h3{font-size:19px; font-weight:700; letter-spacing:-.02em; margin:0 0 10px}
+.svc p{font-size:14.5px; line-height:1.7; color:var(--ink-2); margin:0 0 16px}
+.svc .case{font-family:var(--mono); font-size:12.5px; text-decoration:none; border-bottom:1px solid var(--ink); padding-bottom:1px}
+.svc .case:hover{color:var(--blue); border-color:var(--blue)}
+.svc .case.soon{color:var(--muted); border-color:var(--hair); pointer-events:none}
+
+/* ============ 작업물 색인 — 파랑 반전 (시그니처) ============ */
+.index{background:var(--blue); color:#fff; border-bottom:1px solid var(--ink); position:relative}
+.index .sec-head{border-color:rgba(255,255,255,.9); color:#fff}
+.index .sec-head .r{color:rgba(255,255,255,.65)}
+.idx-body{position:relative; padding:8px 0 30px}
+/* 먹줄: 항목들을 꿰는 흰 줄 */
+.idx-rule{position:absolute; left:clamp(8px,1.4vw,18px); top:20px; bottom:26px; width:2px;
+  background:#fff; transform-origin:top; opacity:.9}
+.row{display:grid; grid-template-columns:minmax(150px,220px) 1fr auto; gap:clamp(14px,3vw,44px); align-items:baseline;
+  padding:26px 0 26px clamp(30px,4vw,58px); position:relative; text-decoration:none;
+  border-bottom:1px solid rgba(255,255,255,.28); transition:background .15s, color .15s}
+.row::before{content:""; position:absolute; left:calc(clamp(8px,1.4vw,18px) - 3px); top:50%; margin-top:-4px;
+  width:8px; height:8px; background:var(--blue); border:2px solid #fff; border-radius:50%}
+.row .path{font-family:var(--mono); font-size:clamp(13px,1.3vw,15px); opacity:.85}
+.row .name{font-family:var(--disp); font-weight:400; font-size:clamp(30px,4.4vw,58px); line-height:1;
+  letter-spacing:.01em; text-transform:uppercase}
+.row .desc{font-size:14px; line-height:1.65; max-width:38ch; opacity:.92; justify-self:end; text-align:left}
+.row .meta{grid-column:2 / -1; display:flex; gap:8px; margin-top:12px; flex-wrap:wrap}
+.chip{font-family:var(--mono); font-size:11.5px; border:1px solid rgba(255,255,255,.5); padding:2.5px 8px}
+.state{font-family:var(--mono); font-size:11.5px; padding:2.5px 8px; background:#fff; color:var(--blue); font-weight:500}
+.row:hover{background:var(--paper); color:var(--ink)}
+.row:hover .chip{border-color:var(--ink)}
+.row:hover .state{background:var(--live-bg); color:var(--live)}
+.row:hover::before{background:#fff; border-color:var(--blue)}
+.row.slot{opacity:.55; pointer-events:none}
+.row.slot .name{opacity:.75}
+/* 슬롯 추가 안내 */
+.idx-note{font-family:var(--mono); font-size:11.5px; color:rgba(255,255,255,.6); padding:18px 0 0 clamp(30px,4vw,58px)}
+
+/* ============ 반응형 — 주요 서비스 / 작업물 색인 ============ */
+@media (max-width:860px){
+  .svc-grid{grid-template-columns:1fr}
+  .svc{border-left:none; border-top:1px solid var(--hair); padding-left:0}
+  .svc:first-child{border-top:none}
+  .row{grid-template-columns:1fr; gap:6px}
+  .row .desc{justify-self:start; max-width:56ch}
+}
