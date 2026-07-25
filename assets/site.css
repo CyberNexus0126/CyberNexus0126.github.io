@@ -1,0 +1,46 @@
+/* 벼리 포트폴리오 — 공통 토큰·베이스. 원본: docs/superpowers/specs/2026-07-25-mockup-design-d.html */
+
+/* ============ 토큰 ============ */
+:root{
+  --paper:#F1F0EA;
+  --paper-2:#EAE9E1;
+  --ink:#111316;
+  --ink-2:#3A3D38;
+  --muted:#6E7168;
+  --hair:#D9D7CC;
+  --blue:#212EEA;
+  --blue-deep:#1A25C4;
+  --live:#0B6E4C;
+  --live-bg:#E2EFE8;
+  --disp:"Syne", "Pretendard Variable", sans-serif;
+  --sans:"Pretendard Variable", "Pretendard", "Apple SD Gothic Neo", system-ui, sans-serif;
+  --mono:"IBM Plex Mono", "Pretendard Variable", ui-monospace, monospace;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth; color-scheme:light only;}
+body{margin:0; background:var(--paper); color:var(--ink); font-family:var(--sans);
+  -webkit-font-smoothing:antialiased; overflow-x:hidden;}
+::selection{background:var(--blue); color:#fff}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--blue); outline-offset:3px}
+
+.wrap{max-width:1240px; margin:0 auto; padding:0 clamp(18px,4vw,48px)}
+.mono{font-family:var(--mono)}
+
+/* ============ 상단바 ============ */
+.topbar{border-bottom:1px solid var(--ink)}
+.topbar .wrap{display:flex; align-items:center; justify-content:space-between; padding-top:16px; padding-bottom:16px}
+.mark{font-family:var(--disp); font-size:19px; letter-spacing:.02em; text-decoration:none}
+.topnav{display:flex; gap:26px; font-family:var(--mono); font-size:12.5px}
+.topnav a{text-decoration:none; border-bottom:1px solid transparent; padding-bottom:2px}
+.topnav a:hover{border-color:var(--ink)}
+
+/* ============ 섹션 공통 ============ */
+.sec-head{display:flex; justify-content:space-between; align-items:baseline;
+  font-family:var(--mono); font-size:12px; letter-spacing:.12em; text-transform:uppercase;
+  padding:14px 0; border-bottom:1px solid var(--ink)}
+.sec-head .r{letter-spacing:0; text-transform:none; color:var(--muted)}
+
+footer{border-top:1px solid var(--ink)}
+footer .wrap{display:flex; justify-content:space-between; padding-top:16px; padding-bottom:22px;
+  font-family:var(--mono); font-size:11.5px; color:var(--muted)}
