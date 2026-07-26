@@ -96,26 +96,11 @@ h1{font-family:var(--disp); font-weight:800; margin:0;
 .cta-col{display:flex; flex-direction:column; gap:12px; align-items:flex-start}
 .cta{display:inline-flex; align-items:center; gap:12px; background:var(--ink); color:var(--paper);
   text-decoration:none; font-weight:700; font-size:15.5px; padding:16px 26px; border-radius:6px;
-  /* 액체 필: 파도 두 덩이가 왼쪽→오른쪽으로 흐르는 동안 수위가 1.8초에 걸쳐
-     차오른다. 수위(y)는 hover 전환, 파도(x)는 상시 무한 애니메이션 — 독립
-     롱핸드라 충돌 없음. 몸체(위 레이어)가 수위를 그리고 그 밑에 깔린 파도
-     타일은 수면 위로 볏만 내민다: 겹침 구조라 이음새가 안 생기고,
-     배경 레이어라 텍스트를 못 덮는다 */
-  /* 수면 = 평평한 직선(몸체 상단) + 그 밑을 지나가는 둥근 공이 밀어 올린
-     원형 캡(반지름 30px 원의 윗부분, 높이 24px) 하나. 캡이 240px 주기로
-     오른쪽으로 미끄러진다 — 공이 지나간 자리는 다시 평평해진다 */
-  background-image:
-    radial-gradient(circle 30px at 50% 30px, var(--blue) 99%, transparent 100%),
-    linear-gradient(var(--blue),var(--blue));
-  background-repeat:repeat-x,no-repeat;
-  background-size:240px 24px, 100% 100%;
-  background-position-x:0,0;
-  background-position-y:66px,90px;
-  transition:background-position-y .55s cubic-bezier(.55,.06,.68,.19);
-  animation:cta-wave 1.6s linear infinite}
-.cta:hover,.cta:focus-visible{background-position-y:-24px,0;
-  transition:background-position-y 1.8s cubic-bezier(.33,.45,.45,1)}
-@keyframes cta-wave{from{background-position-x:0,0} to{background-position-x:240px,0}}
+  /* 먹줄 스윕 필: 파랑이 왼쪽에서 오른쪽으로 쓸고 지나가며 채워진다 (배경 레이어라 텍스트를 못 덮음) */
+  background-image:linear-gradient(var(--blue),var(--blue)); background-repeat:no-repeat;
+  background-size:0% 100%; background-position:left center;
+  transition:background-size .22s cubic-bezier(.65,.05,.35,1)}
+.cta:hover,.cta:focus-visible{background-size:100% 100%}
 .cta-mail{font-family:var(--mono); font-size:12.5px; color:var(--muted)}
 
 /* ============ 문의 ============ */
