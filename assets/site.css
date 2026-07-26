@@ -55,22 +55,30 @@ footer .wrap{display:flex; justify-content:space-between; padding-top:16px; padd
   font-family:var(--mono); font-size:10.5px; letter-spacing:.22em; color:var(--blue);
   writing-mode:vertical-rl}
 /* 워드마크 스윕: BYEORI가 왼쪽에서 들어와 고정된 먹줄에 정렬되는 순간
-   (E–O 사이에 선이 오는 자연 위치)에서 잠깐 느려졌다가 급가속으로 이탈
-   → ~1.5초 부재 → 반복. 루프 리셋 점프는 화면 밖에서 일어난다 */
-.hero h1{animation:mark-sweep 3.6s linear infinite; will-change:transform}
-/* 속도 램프는 이징 없이 하드 컷: 등속 빠름 → 즉시 저속 → 즉시 더 빠름 */
+   (E–O 사이에 선이 오는 자연 위치)에서 저속으로 조립됐다가 급가속으로 이탈
+   → ~1.5초 부재 → 반복. 속도 램프는 이징 없이 하드 컷(등속 3구간).
+   글자별 60ms 지연의 기차형 스태거 — 오른쪽 글자가 앞장선다. 빠른 구간에선
+   속도가 지연차를 증폭해 단어가 늘어나고, 저속에선 정상 자간으로 조립된다.
+   backwards 필수: 없으면 첫 로드 때 지연 중인 글자가 제자리에 보인다 */
+.hero h1{white-space:nowrap} /* inline-block 글자 사이 줄바꿈 방지 — 단어일 때와 동일한 오버플로 유지 */
+.hero h1 .l{display:inline-block; animation:mark-sweep 4.5s linear infinite backwards; will-change:transform}
+.hero h1 .l:nth-child(1){animation-delay:.3s}
+.hero h1 .l:nth-child(2){animation-delay:.24s}
+.hero h1 .l:nth-child(3){animation-delay:.18s}
+.hero h1 .l:nth-child(4){animation-delay:.12s}
+.hero h1 .l:nth-child(5){animation-delay:.06s}
 @keyframes mark-sweep{
   0%{transform:translateX(-105vw)}
-  24%{transform:translateX(0)}
-  49%{transform:translateX(10px)}
-  70%{transform:translateX(102vw)}
+  19%{transform:translateX(0)}
+  50%{transform:translateX(12px)}
+  67%{transform:translateX(102vw)}
   100%{transform:translateX(102vw)}
 }
 @media (max-width:700px){
-  .hero h1{animation:none}
+  .hero h1 .l{animation:none}
 }
 @media (prefers-reduced-motion: reduce){
-  .hero h1{animation:none}
+  .hero h1 .l{animation:none}
 }
 .eyebrow{display:flex; justify-content:space-between; align-items:baseline;
   font-family:var(--mono); font-size:12px; letter-spacing:.12em; color:var(--ink-2); margin:0 0 clamp(22px,4vh,44px)}
