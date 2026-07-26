@@ -61,7 +61,7 @@ footer .wrap{display:flex; justify-content:space-between; padding-top:16px; padd
    속도가 지연차를 증폭해 단어가 늘어나고, 저속에선 정상 자간으로 조립된다.
    backwards 필수: 없으면 첫 로드 때 지연 중인 글자가 제자리에 보인다 */
 .hero h1{white-space:nowrap} /* inline-block 글자 사이 줄바꿈 방지 — 단어일 때와 동일한 오버플로 유지 */
-.hero h1 .l{display:inline-block; animation:mark-sweep 3.9s linear infinite backwards; will-change:transform}
+.hero h1 .l{display:inline-block; animation:mark-sweep 4.3s linear infinite backwards; will-change:transform}
 .hero h1 .l:nth-child(1){animation-delay:.3s}
 .hero h1 .l:nth-child(2){animation-delay:.24s}
 .hero h1 .l:nth-child(3){animation-delay:.18s}
@@ -72,10 +72,10 @@ footer .wrap{display:flex; justify-content:space-between; padding-top:16px; padd
    액체처럼 다시 늘어나며 퇴장. 블러 없음 — 스트레치만으로 속도를 그린다 */
 @keyframes mark-sweep{
   0%{transform:translateX(-94vw) scaleX(2.4); animation-timing-function:linear}
-  9%{transform:translateX(-18vw) scaleX(2.4); animation-timing-function:cubic-bezier(.15,.6,.3,1)}
-  13%{transform:translateX(-45px) scaleX(1); animation-timing-function:linear}
-  46%{transform:translateX(45px) scaleX(1); animation-timing-function:cubic-bezier(.75,.05,.95,.4)}
-  56%{transform:translateX(102vw) scaleX(2.6)}
+  8%{transform:translateX(-18vw) scaleX(2.4); animation-timing-function:cubic-bezier(.15,.6,.3,1)}
+  12%{transform:translateX(-45px) scaleX(1); animation-timing-function:linear}
+  51%{transform:translateX(45px) scaleX(1); animation-timing-function:cubic-bezier(.75,.05,.95,.4)}
+  60%{transform:translateX(102vw) scaleX(2.6)}
   100%{transform:translateX(102vw) scaleX(2.6)}
 }
 @media (max-width:700px){
