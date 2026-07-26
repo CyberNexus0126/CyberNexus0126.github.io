@@ -267,3 +267,49 @@ h1{font-family:var(--disp); font-weight:800; margin:0;
 .back-link{display:inline-block; margin-top:2px; font-family:var(--mono); font-size:12.5px;
   text-decoration:none; border-bottom:1px solid var(--ink); padding-bottom:2px}
 .back-link:hover{color:var(--blue); border-color:var(--blue)}
+
+/* ---- 인터루드: 스크롤에 비례해 차오르는 문구 (v1.1) ---- */
+.interlude{border-bottom:1px solid var(--ink)}
+.itl-track{height:200vh; position:relative}
+#itlB .itl-track{height:180vh}
+.itl-stage{position:sticky; top:0; height:100vh; display:grid; place-items:center; overflow:hidden}
+.itl-text{position:relative; z-index:1; font-weight:800; font-size:clamp(30px,5.4vw,68px);
+  letter-spacing:-.035em; line-height:1.3; text-align:center; margin:0; padding:0 24px; max-width:18ch}
+.itl-text .w{opacity:1}
+.itl-rule{position:absolute; left:62%; top:0; bottom:0; width:3px; background:var(--blue);
+  transform:scaleY(0); transform-origin:top; opacity:.85}
+
+@supports ((animation-timeline: scroll()) and (animation-range: 0% 100%)){
+  .itl-track{view-timeline:--itl block}
+  @keyframes itl-in{to{opacity:1}}
+  @keyframes itl-draw{to{transform:scaleY(1)}}
+  .itl-text .w{opacity:.1; animation:itl-in auto linear both; animation-timeline:--itl}
+  .itl-rule{animation:itl-draw auto linear both; animation-timeline:--itl; animation-range:contain 0% contain 80%}
+  #itlA .w:nth-child(1){animation-range:contain 10% contain 30%}
+  #itlA .w:nth-child(2){animation-range:contain 28% contain 48%}
+  #itlA .w:nth-child(3){animation-range:contain 46% contain 66%}
+  #itlA .w:nth-child(4){animation-range:contain 64% contain 84%}
+  #itlB .w:nth-child(1){animation-range:contain 12% contain 36%}
+  #itlB .w:nth-child(2){animation-range:contain 34% contain 58%}
+  #itlB .w:nth-child(3){animation-range:contain 56% contain 80%}
+}
+
+/* 인터루드 폴백: 모바일·reduced-motion은 정적 문장으로 */
+@media (max-width:700px){
+  .itl-track{height:auto}
+  #itlB .itl-track{height:auto}
+  .itl-stage{position:static; height:auto; padding:72px 0}
+  .itl-text .w{opacity:1 !important; animation:none !important}
+  .itl-rule{display:none}
+}
+@media (prefers-reduced-motion: reduce){
+  .itl-track{height:auto}
+  #itlB .itl-track{height:auto}
+  .itl-stage{position:static; height:auto; padding:72px 0}
+  .itl-text .w{opacity:1 !important; animation:none !important}
+  .itl-rule{display:none}
+}
+
+/* 밀도 완화 (v1.1): 섹션 내부 호흡 */
+.svc{padding-top:38px; padding-bottom:46px}
+.row{padding-top:32px; padding-bottom:32px}
