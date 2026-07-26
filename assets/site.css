@@ -61,23 +61,25 @@ footer .wrap{display:flex; justify-content:space-between; padding-top:16px; padd
    속도가 지연차를 증폭해 단어가 늘어나고, 저속에선 정상 자간으로 조립된다.
    backwards 필수: 없으면 첫 로드 때 지연 중인 글자가 제자리에 보인다 */
 .hero h1{white-space:nowrap} /* inline-block 글자 사이 줄바꿈 방지 — 단어일 때와 동일한 오버플로 유지 */
-.hero h1 .l{display:inline-block; animation:mark-sweep 3.7s linear infinite backwards; will-change:transform,filter}
+.hero h1 .l{display:inline-block; animation:mark-sweep 4.3s linear infinite backwards; will-change:transform}
 .hero h1 .l:nth-child(1){animation-delay:.3s}
 .hero h1 .l:nth-child(2){animation-delay:.24s}
 .hero h1 .l:nth-child(3){animation-delay:.18s}
 .hero h1 .l:nth-child(4){animation-delay:.12s}
 .hero h1 .l:nth-child(5){animation-delay:.06s}
-/* 빠른 구간(~4800/5700px/s)은 가로 2.4배 스트레치 + 블러로 모션 블러를 만든다
-   — 프레임당 이동량(80px+)보다 글자가 넓어야 스트로브 없이 연속 잔상으로 보인다.
-   저속은 정지가 아니라 -45px→+45px 글라이드(≈70px/s), 먹줄 정렬은 그 중간점.
-   도착 직후 0.1초 만에 스트레치가 풀리며 제 폭으로 압축 착지한다 */
+/* 리듬 = "빠아밤". 왼쪽 가장자리에서 제 폭으로 천천히 스며들다가, 가속이 붙는
+   순간부터 액체처럼 가로로 조금씩 늘어난다(속도와 스트레치가 같은 ease-in을
+   타므로 빨라질수록 더 늘어남). 먹줄 도착 때 감속하며 수축 착지 → 저속
+   글라이드(-45px→+45px, 정렬은 중간점) → 이탈 가속에서 다시 늘어나며 퇴장.
+   블러 없음 — 스트레치만으로 속도를 그린다 */
 @keyframes mark-sweep{
-  0%{transform:translateX(-105vw) scaleX(2.4); filter:blur(5px)}
-  11%{transform:translateX(-45px) scaleX(2.4); filter:blur(5px)}
-  14%{transform:translateX(-38px) scaleX(1); filter:blur(0)}
-  46%{transform:translateX(45px) scaleX(1); filter:blur(0)}
-  55%{transform:translateX(102vw) scaleX(2.4); filter:blur(5px)}
-  100%{transform:translateX(102vw) scaleX(2.4); filter:blur(5px)}
+  0%{transform:translateX(-94vw) scaleX(1); animation-timing-function:linear}
+  9.5%{transform:translateX(-76vw) scaleX(1); animation-timing-function:cubic-bezier(.7,.05,.9,.4)}
+  17.5%{transform:translateX(-18vw) scaleX(2.4); animation-timing-function:cubic-bezier(.15,.6,.3,1)}
+  21%{transform:translateX(-45px) scaleX(1); animation-timing-function:linear}
+  51%{transform:translateX(45px) scaleX(1); animation-timing-function:cubic-bezier(.75,.05,.95,.4)}
+  60%{transform:translateX(102vw) scaleX(2.6)}
+  100%{transform:translateX(102vw) scaleX(2.6)}
 }
 @media (max-width:700px){
   .hero h1 .l{animation:none}
