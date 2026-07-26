@@ -48,7 +48,7 @@ footer .wrap{display:flex; justify-content:space-between; padding-top:16px; padd
 /* ============ 히어로 ============ */
 .hero{border-bottom:1px solid var(--ink); position:relative}
 .hero .wrap{padding-top:clamp(40px,7vh,84px); padding-bottom:clamp(36px,6vh,72px); position:relative}
-.hero-rule{position:absolute; top:0; bottom:0; left:62%; width:3px; background:var(--blue)}
+.hero-rule{position:absolute; top:0; bottom:0; left:62%; width:5px; background:var(--blue)}
 .hero-rule::before{content:""; position:absolute; left:-10px; top:0; bottom:0; width:23px;
   background:repeating-linear-gradient(180deg, var(--blue) 0 2px, transparent 2px 88px)}
 .hero-rule::after{content:"BYEORI · WORKBENCH"; position:absolute; bottom:14px; left:14px;
@@ -101,7 +101,7 @@ h1{font-family:var(--disp); font-weight:800; margin:0;
 .index .sec-head .r{color:rgba(255,255,255,.65)}
 .idx-body{position:relative; padding:8px 0 30px}
 /* 먹줄: 항목들을 꿰는 흰 줄 */
-.idx-rule{position:absolute; left:clamp(8px,1.4vw,18px); top:20px; bottom:26px; width:2px;
+.idx-rule{position:absolute; left:clamp(8px,1.4vw,18px); top:20px; bottom:26px; width:4px;
   background:#fff; transform-origin:top; opacity:.9}
 .row{display:grid; grid-template-columns:minmax(150px,220px) 1fr auto; gap:clamp(14px,3vw,44px); align-items:baseline;
   padding:26px 0 26px clamp(30px,4vw,58px); position:relative; text-decoration:none;
@@ -273,11 +273,14 @@ h1{font-family:var(--disp); font-weight:800; margin:0;
 .itl-track{height:200vh; position:relative}
 #itlB .itl-track{height:180vh}
 .itl-stage{position:sticky; top:0; height:100vh; display:grid; place-items:center; overflow:hidden}
+.itl-in{position:relative; width:100%; height:100%; display:grid; place-items:center}
 .itl-text{position:relative; z-index:1; font-weight:800; font-size:clamp(30px,5.4vw,68px);
   letter-spacing:-.035em; line-height:1.3; text-align:center; margin:0; padding:0 24px; max-width:18ch}
 .itl-text .w{opacity:1}
-.itl-rule{position:absolute; left:62%; top:0; bottom:0; width:3px; background:var(--blue);
+.itl-rule{position:absolute; left:62%; top:0; bottom:0; width:5px; background:var(--blue);
   transform:scaleY(0); transform-origin:top; opacity:.85}
+.itl-rule::before{content:""; position:absolute; left:-10px; top:0; bottom:0; width:25px;
+  background:repeating-linear-gradient(180deg, var(--blue) 0 2px, transparent 2px 88px)}
 
 @supports ((animation-timeline: scroll()) and (animation-range: 0% 100%)){
   .itl-track{view-timeline:--itl block}
@@ -315,9 +318,12 @@ h1{font-family:var(--disp); font-weight:800; margin:0;
 .row{padding-top:32px; padding-bottom:32px}
 
 /* ---- 숨 (breather): 섹션 사이 여백 + 먹줄 토막이 지나가며 그어짐 (v1.1) ---- */
-.breather{height:62vh; display:grid; place-items:center}
-.br-line{width:3px; height:44vh; background:var(--blue); opacity:.85;
+.breather{height:72vh}
+.br-in{position:relative; height:100%}
+.br-line{position:absolute; left:62%; top:14vh; width:5px; height:44vh; background:var(--blue); opacity:.85;
   transform:scaleY(0); transform-origin:top}
+.br-line::before{content:""; position:absolute; left:-10px; top:0; bottom:0; width:25px;
+  background:repeating-linear-gradient(180deg, var(--blue) 0 2px, transparent 2px 88px)}
 @supports ((animation-timeline: scroll()) and (animation-range: 0% 100%)){
   .breather{view-timeline:--br block}
   .br-line{animation:itl-draw auto linear both; animation-timeline:--br;
@@ -331,3 +337,25 @@ h1{font-family:var(--disp); font-weight:800; margin:0;
   .breather{height:16vh}
   .br-line{display:none}
 }
+
+/* ---- 대형 섹션 타이틀: 인터루드와 같은 잉크 차오름 (v1.1) ---- */
+.sec-title{font-weight:800; font-size:clamp(42px,7vw,92px); letter-spacing:-.04em; line-height:1.06;
+  margin:clamp(36px,6vh,64px) 0 clamp(28px,5vh,52px)}
+.sec-title .w{opacity:1}
+@supports ((animation-timeline: scroll()) and (animation-range: 0% 100%)){
+  .sec-title{view-timeline:--st block}
+  .sec-title .w{opacity:.1; animation:itl-in auto linear both; animation-timeline:--st}
+  .sec-title .w:nth-child(1){animation-range:cover 4% cover 26%}
+  .sec-title .w:nth-child(2){animation-range:cover 14% cover 36%}
+}
+@media (max-width:700px){
+  .sec-title .w{opacity:1 !important; animation:none !important}
+}
+@media (prefers-reduced-motion: reduce){
+  .sec-title .w{opacity:1 !important; animation:none !important}
+}
+
+/* 서비스 3개 확대 (v1.1) */
+.svc{padding-top:46px; padding-bottom:58px}
+.svc h3{font-size:clamp(22px,2.4vw,30px); margin-bottom:14px}
+.svc p{font-size:15.5px; line-height:1.75}
