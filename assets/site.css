@@ -256,8 +256,10 @@ h1{font-family:var(--disp); font-weight:800; margin:0;
 .case-block{border-bottom:1px solid var(--ink)}
 .case-block:last-of-type{border-bottom:none}
 .case-block .wrap{padding-top:clamp(26px,4vh,46px); padding-bottom:clamp(26px,4vh,46px)}
-.shot-placeholder{aspect-ratio:16/10; border:1px dashed var(--hair); display:grid; place-items:center;
-  margin-top:18px; font-family:var(--mono); font-size:13px; color:var(--muted); text-align:center}
+.shots{display:grid; gap:22px; margin-top:18px}
+.shot{margin:0}
+.shot img{width:100%; height:auto; display:block; border:1px solid var(--hair)}
+.shot figcaption{font-family:var(--mono); font-size:12px; color:var(--muted); margin-top:8px}
 .case-sec{max-width:72ch; margin-top:18px}
 .case-sec p{font-size:15px; line-height:1.75; color:var(--ink-2); margin:0}
 .tech-chips{display:flex; flex-wrap:wrap; gap:8px; margin-top:18px}
