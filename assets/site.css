@@ -260,7 +260,6 @@ h1{font-family:var(--disp); font-weight:800; margin:0;
   margin-top:18px; font-family:var(--mono); font-size:13px; color:var(--muted); text-align:center}
 .case-sec{max-width:72ch; margin-top:18px}
 .case-sec p{font-size:15px; line-height:1.75; color:var(--ink-2); margin:0}
-.stuck-list{margin-top:6px}
 .tech-chips{display:flex; flex-wrap:wrap; gap:8px; margin-top:18px}
 .tech-chips .chip{border-color:var(--hair); color:var(--ink-2)}
 .case-demo{margin:18px 0 0; font-size:13px; color:var(--muted)}
@@ -360,3 +359,12 @@ h1{font-family:var(--disp); font-weight:800; margin:0;
 .svc{padding-top:46px; padding-bottom:58px}
 .svc h3{font-size:clamp(22px,2.4vw,30px); margin-bottom:14px}
 .svc p{font-size:15.5px; line-height:1.75}
+
+/* 히어로 확대 (v1.1): 첫 화면을 채우도록 — 먹줄 축·하위 섹션 불변 */
+.hero .wrap{padding-top:clamp(56px,10vh,120px); padding-bottom:clamp(48px,9vh,110px)}
+.hero h1{font-size:clamp(72px,13.5vw,220px)}
+.hero .h1-sub{font-size:clamp(28px,4.2vw,54px)}
+.hero .eyebrow{margin-bottom:clamp(28px,5vh,56px)}
+.hero .hero-low{margin-top:clamp(40px,7vh,80px)}
+.hero .lede{font-size:17.5px; max-width:46ch}
+.hero .cta{font-size:16.5px; padding:18px 30px}

@@ -55,18 +55,7 @@
     <div class="sec-head"><span>구현</span><span class="r">어떻게 만들었나</span></div>
     <div class="case-sec">
       <p>프레임워크는 Next.js 16 App Router, React 19, TypeScript, 스타일은 Tailwind v4를 사용했습니다. 백엔드는 Supabase — Auth로 로그인을 처리하고 PostgreSQL에 Row Level Security를 걸어 모든 행 접근을 본인으로 제한했습니다. Next.js 16에서 middleware.ts가 proxy.ts로 바뀐 변화에 맞춰 세션 갱신을 proxy.ts에서 처리하고, 서버 컴포넌트의 getUser() 호출로 한 번 더 인증을 확인하는 이중 가드를 뒀습니다. 차트는 Recharts를 사용했습니다. 로컬에 Docker가 없는 환경이라 Supabase는 클라우드 무료 프로젝트를 선택했습니다.</p>
-    </div>
-  </div>
-</section>
-
-<section class="case-block">
-  <div class="wrap">
-    <div class="sec-head"><span>막힌 지점</span><span class="r">막혔던 지점과 해결</span></div>
-    <div class="stuck-list">
-      <div class="mrow"><span class="k">01</span><div><h4>다크모드 반전 버그</h4><p>로그인 브랜드 패널, 모달·모바일 스크림처럼 항상 어두워야 할 요소가 테마 반전 토큰을 그대로 써서 다크모드에서 오히려 밝아졌습니다. 해당 요소만 고정 색으로 바꿔 해결했습니다.</p></div></div>
-      <div class="mrow"><span class="k">02</span><div><h4>하이드레이션 경고</h4><p>하이드레이션 전에 테마를 정하는 인라인 스크립트가 React 19 경고를 유발했습니다. 스크립트를 제거하고 시스템 선호는 CSS 미디어쿼리로, 수동 토글은 effect에서 처리하도록 바꿨습니다.</p></div></div>
-      <div class="mrow"><span class="k">03</span><div><h4>env 없을 때 빌드 실패</h4><p>환경변수가 없으면 import 시점에 throw가 발생해 빌드 자체가 실패했습니다. 실제로 값이 필요한 시점에 안내 화면을 보여주는 방식으로 바꿨습니다.</p></div></div>
-      <div class="mrow"><span class="k">04</span><div><h4>배포 하드닝</h4><p>배포 전 점검에서 nosniff, X-Frame-Options DENY 같은 보안 헤더가 빠져 있는 걸 확인하고 추가했습니다.</p></div></div>
+      <p>세부 완성도에도 기준을 뒀습니다. 다크모드에서 항상 어두워야 하는 요소는 테마 토큰과 분리해 고정 색으로 처리했고, 테마 초기화는 하이드레이션 경고가 나지 않도록 시스템 선호는 CSS 미디어쿼리로, 수동 토글은 effect로 나눴습니다. 환경변수가 없으면 빌드가 실패하는 대신 설정 안내 화면이 뜨도록 했고, 배포 전 점검에서 nosniff·X-Frame-Options 같은 보안 헤더를 확인해 추가했습니다.</p>
     </div>
   </div>
 </section>
