@@ -1,0 +1,4 @@
+:HL["/dealdesk/app/_next/static/chunks/2r3xm7zq1-6fo.css","style"]
+:HL["/dealdesk/app/_next/static/media/0c89a48fa5027cee-s.p.2cyn07wtgehh0.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/dealdesk/app/_next/static/media/PretendardVariable-s.p.0ztvx5mb7lxp4.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+0:{"tree":{"name":"","param":null,"prefetchHints":24,"slots":{"children":{"name":"(app)","param":null,"prefetchHints":4,"slots":{"children":{"name":"dashboard","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}}}},"staleTime":300,"buildId":"5fmxIrTxrO-b-3qYuG92E"}
