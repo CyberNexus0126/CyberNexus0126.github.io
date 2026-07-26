@@ -95,8 +95,12 @@ h1{font-family:var(--disp); font-weight:800; margin:0;
 .lede{font-size:16.5px; line-height:1.74; color:var(--ink-2); max-width:44ch; margin:0}
 .cta-col{display:flex; flex-direction:column; gap:12px; align-items:flex-start}
 .cta{display:inline-flex; align-items:center; gap:12px; background:var(--ink); color:var(--paper);
-  text-decoration:none; font-weight:700; font-size:15.5px; padding:16px 26px; border-radius:6px; transition:background .18s}
-.cta:hover{background:var(--blue)}
+  text-decoration:none; font-weight:700; font-size:15.5px; padding:16px 26px; border-radius:6px;
+  /* 먹줄 스윕 필: 파랑이 왼쪽에서 오른쪽으로 쓸고 지나가며 채워진다 (배경 레이어라 텍스트를 못 덮음) */
+  background-image:linear-gradient(var(--blue),var(--blue)); background-repeat:no-repeat;
+  background-size:0% 100%; background-position:left center;
+  transition:background-size .22s cubic-bezier(.65,.05,.35,1)}
+.cta:hover,.cta:focus-visible{background-size:100% 100%}
 .cta-mail{font-family:var(--mono); font-size:12.5px; color:var(--muted)}
 
 /* ============ 문의 ============ */
