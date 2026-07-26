@@ -48,7 +48,7 @@ footer .wrap{display:flex; justify-content:space-between; padding-top:16px; padd
 /* ============ 히어로 ============ */
 .hero{border-bottom:1px solid var(--ink); position:relative}
 .hero .wrap{padding-top:clamp(40px,7vh,84px); padding-bottom:clamp(36px,6vh,72px); position:relative}
-.hero-rule{position:absolute; top:0; bottom:0; left:62%; width:3px; background:var(--blue)}
+.hero-rule{position:absolute; top:0; bottom:0; left:62%; width:5px; background:var(--blue)}
 .hero-rule::before{content:""; position:absolute; left:-10px; top:0; bottom:0; width:23px;
   background:repeating-linear-gradient(180deg, var(--blue) 0 2px, transparent 2px 88px)}
 .hero-rule::after{content:"BYEORI · WORKBENCH"; position:absolute; bottom:14px; left:14px;
@@ -101,7 +101,7 @@ h1{font-family:var(--disp); font-weight:800; margin:0;
 .index .sec-head .r{color:rgba(255,255,255,.65)}
 .idx-body{position:relative; padding:8px 0 30px}
 /* 먹줄: 항목들을 꿰는 흰 줄 */
-.idx-rule{position:absolute; left:clamp(8px,1.4vw,18px); top:20px; bottom:26px; width:2px;
+.idx-rule{position:absolute; left:clamp(8px,1.4vw,18px); top:20px; bottom:26px; width:4px;
   background:#fff; transform-origin:top; opacity:.9}
 .row{display:grid; grid-template-columns:minmax(150px,220px) 1fr auto; gap:clamp(14px,3vw,44px); align-items:baseline;
   padding:26px 0 26px clamp(30px,4vw,58px); position:relative; text-decoration:none;
@@ -260,10 +260,111 @@ h1{font-family:var(--disp); font-weight:800; margin:0;
   margin-top:18px; font-family:var(--mono); font-size:13px; color:var(--muted); text-align:center}
 .case-sec{max-width:72ch; margin-top:18px}
 .case-sec p{font-size:15px; line-height:1.75; color:var(--ink-2); margin:0}
-.stuck-list{margin-top:6px}
 .tech-chips{display:flex; flex-wrap:wrap; gap:8px; margin-top:18px}
 .tech-chips .chip{border-color:var(--hair); color:var(--ink-2)}
 .case-demo{margin:18px 0 0; font-size:13px; color:var(--muted)}
 .back-link{display:inline-block; margin-top:2px; font-family:var(--mono); font-size:12.5px;
   text-decoration:none; border-bottom:1px solid var(--ink); padding-bottom:2px}
 .back-link:hover{color:var(--blue); border-color:var(--blue)}
+
+/* ---- 인터루드: 스크롤에 비례해 차오르는 문구 (v1.1) ---- */
+.interlude{border-bottom:1px solid var(--ink)}
+.itl-track{height:200vh; position:relative}
+#itlB .itl-track{height:180vh}
+.itl-stage{position:sticky; top:0; height:100vh; display:grid; place-items:center; overflow:hidden}
+.itl-in{position:relative; width:100%; height:100%; display:grid; place-items:center}
+.itl-text{position:relative; z-index:1; font-weight:800; font-size:clamp(30px,5.4vw,68px);
+  letter-spacing:-.035em; line-height:1.3; text-align:center; margin:0; padding:0 24px; max-width:18ch}
+.itl-text .w{opacity:1}
+.itl-rule{position:absolute; left:62%; top:0; bottom:0; width:5px; background:var(--blue);
+  transform:scaleY(0); transform-origin:top; opacity:.85}
+.itl-rule::before{content:""; position:absolute; left:-10px; top:0; bottom:0; width:25px;
+  background:repeating-linear-gradient(180deg, var(--blue) 0 2px, transparent 2px 88px)}
+
+@supports ((animation-timeline: scroll()) and (animation-range: 0% 100%)){
+  .itl-track{view-timeline:--itl block}
+  @keyframes itl-in{to{opacity:1}}
+  @keyframes itl-draw{to{transform:scaleY(1)}}
+  .itl-text .w{opacity:.1; animation:itl-in auto linear both; animation-timeline:--itl}
+  .itl-rule{animation:itl-draw auto linear both; animation-timeline:--itl; animation-range:contain 0% contain 80%}
+  #itlA .w:nth-child(1){animation-range:contain 10% contain 30%}
+  #itlA .w:nth-child(2){animation-range:contain 28% contain 48%}
+  #itlA .w:nth-child(3){animation-range:contain 46% contain 66%}
+  #itlA .w:nth-child(4){animation-range:contain 64% contain 84%}
+  #itlB .w:nth-child(1){animation-range:contain 12% contain 36%}
+  #itlB .w:nth-child(2){animation-range:contain 34% contain 58%}
+  #itlB .w:nth-child(3){animation-range:contain 56% contain 80%}
+}
+
+/* 인터루드 폴백: 모바일·reduced-motion은 정적 문장으로 */
+@media (max-width:700px){
+  .itl-track{height:auto}
+  #itlB .itl-track{height:auto}
+  .itl-stage{position:static; height:auto; padding:72px 0}
+  .itl-text .w{opacity:1 !important; animation:none !important}
+  .itl-rule{display:none}
+}
+@media (prefers-reduced-motion: reduce){
+  .itl-track{height:auto}
+  #itlB .itl-track{height:auto}
+  .itl-stage{position:static; height:auto; padding:72px 0}
+  .itl-text .w{opacity:1 !important; animation:none !important}
+  .itl-rule{display:none}
+}
+
+/* 밀도 완화 (v1.1): 섹션 내부 호흡 */
+.svc{padding-top:38px; padding-bottom:46px}
+.row{padding-top:32px; padding-bottom:32px}
+
+/* ---- 숨 (breather): 섹션 사이 여백 + 먹줄 토막이 지나가며 그어짐 (v1.1) ---- */
+.breather{height:72vh}
+.br-in{position:relative; height:100%}
+/* 위 섹션의 검은 경계선에서 나와 아래 섹션에 닿을 때까지 — 사이를 완전히 잇는 실 */
+.br-line{position:absolute; left:62%; top:0; bottom:0; width:5px; background:var(--blue); opacity:.85;
+  transform:scaleY(0); transform-origin:top}
+.br-line::before{content:""; position:absolute; left:-10px; top:0; bottom:0; width:25px;
+  background:repeating-linear-gradient(180deg, var(--blue) 0 2px, transparent 2px 88px)}
+@supports ((animation-timeline: scroll()) and (animation-range: 0% 100%)){
+  .breather{view-timeline:--br block}
+  .br-line{animation:itl-draw auto linear both; animation-timeline:--br;
+    animation-range:entry 25% cover 75%}
+}
+@media (max-width:700px){
+  .breather{height:16vh}
+  .br-line{display:none}
+}
+@media (prefers-reduced-motion: reduce){
+  .breather{height:16vh}
+  .br-line{display:none}
+}
+
+/* ---- 대형 섹션 타이틀: 인터루드와 같은 잉크 차오름 (v1.1) ---- */
+.sec-title{font-weight:800; font-size:clamp(42px,7vw,92px); letter-spacing:-.04em; line-height:1.06;
+  margin:clamp(36px,6vh,64px) 0 clamp(28px,5vh,52px)}
+.sec-title .w{opacity:1}
+@supports ((animation-timeline: scroll()) and (animation-range: 0% 100%)){
+  .sec-title{view-timeline:--st block}
+  .sec-title .w{opacity:.1; animation:itl-in auto linear both; animation-timeline:--st}
+  .sec-title .w:nth-child(1){animation-range:cover 4% cover 26%}
+  .sec-title .w:nth-child(2){animation-range:cover 14% cover 36%}
+}
+@media (max-width:700px){
+  .sec-title .w{opacity:1 !important; animation:none !important}
+}
+@media (prefers-reduced-motion: reduce){
+  .sec-title .w{opacity:1 !important; animation:none !important}
+}
+
+/* 서비스 3개 확대 (v1.1) */
+.svc{padding-top:46px; padding-bottom:58px}
+.svc h3{font-size:clamp(22px,2.4vw,30px); margin-bottom:14px}
+.svc p{font-size:15.5px; line-height:1.75}
+
+/* 히어로 확대 (v1.1): 첫 화면을 채우도록 — 먹줄 축·하위 섹션 불변 */
+.hero .wrap{padding-top:clamp(56px,10vh,120px); padding-bottom:clamp(48px,9vh,110px)}
+.hero h1{font-size:clamp(72px,13.5vw,220px)}
+.hero .h1-sub{font-size:clamp(28px,4.2vw,54px)}
+.hero .eyebrow{margin-bottom:clamp(28px,5vh,56px)}
+.hero .hero-low{margin-top:clamp(40px,7vh,80px)}
+.hero .lede{font-size:17.5px; max-width:46ch}
+.hero .cta{font-size:16.5px; padding:18px 30px}

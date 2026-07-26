@@ -31,6 +31,15 @@
   if (reduce || native) return;
 
   /* Firefox 등 미지원: 스크롤 리스너로 동일 효과 */
+  var itls = Array.prototype.map.call(document.querySelectorAll('.interlude'), function(sec){
+    return {
+      track: sec.querySelector('.itl-track'),
+      words: sec.querySelectorAll('.itl-text .w'),
+      rule: sec.querySelector('.itl-rule')
+    };
+  });
+  var brs = document.querySelectorAll('.breather');
+  var titles = document.querySelectorAll('.sec-title');
   var track = document.querySelector('.book-track');
   var leaves = [
     {el: document.querySelector('.leaf-1'), a:.06, b:.27, zi:9, zo:1},
@@ -55,6 +64,33 @@
       });
       var sheen = L.el.querySelector('.sheen');
       if (sheen) sheen.style.opacity = String(1 - Math.abs(t-.45)*2.2 > 0 ? 1 - Math.abs(t-.45)*2.2 : 0);
+    });
+    itls.forEach(function(I){
+      if (!I.track) return;
+      var ir = I.track.getBoundingClientRect();
+      var itotal = Math.max(1, ir.height - innerHeight);
+      var ip = Math.min(1, Math.max(0, -ir.top / itotal));
+      var n = I.words.length, seg = .74 / Math.max(1, n);
+      for (var i = 0; i < n; i++){
+        var wt = Math.min(1, Math.max(0, (ip - (.1 + i * seg)) / (seg * 1.15)));
+        I.words[i].style.opacity = String(.1 + .9 * wt);
+      }
+      if (I.rule) I.rule.style.transform = 'scaleY(' + Math.min(1, Math.max(0, ip / .8)) + ')';
+    });
+    brs.forEach(function(B){
+      var br = B.getBoundingClientRect();
+      var bp = Math.min(1, Math.max(0, (innerHeight - br.top) / (innerHeight + br.height)));
+      var line = B.querySelector('.br-line');
+      if (line) line.style.transform = 'scaleY(' + Math.min(1, Math.max(0, (bp - .25) / .5)) + ')';
+    });
+    titles.forEach(function(T){
+      var tr = T.getBoundingClientRect();
+      var tp = Math.min(1, Math.max(0, (innerHeight - tr.top) / (innerHeight + tr.height)));
+      var tws = T.querySelectorAll('.w');
+      for (var k = 0; k < tws.length; k++){
+        var tt = Math.min(1, Math.max(0, (tp - (.04 + k * .1)) / .22));
+        tws[k].style.opacity = String(.1 + .9 * tt);
+      }
     });
   }
   addEventListener('scroll', function(){ if(!ticking){ticking=true; requestAnimationFrame(draw);} }, {passive:true});
