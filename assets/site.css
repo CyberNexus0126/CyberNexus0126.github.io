@@ -96,11 +96,18 @@ h1{font-family:var(--disp); font-weight:800; margin:0;
 .cta-col{display:flex; flex-direction:column; gap:12px; align-items:flex-start}
 .cta{display:inline-flex; align-items:center; gap:12px; background:var(--ink); color:var(--paper);
   text-decoration:none; font-weight:700; font-size:15.5px; padding:16px 26px; border-radius:6px;
-  /* 먹줄 스윕 필: 파랑이 왼쪽에서 오른쪽으로 쓸고 지나가며 채워진다 (배경 레이어라 텍스트를 못 덮음) */
-  background-image:linear-gradient(var(--blue),var(--blue)); background-repeat:no-repeat;
-  background-size:0% 100%; background-position:left center;
-  transition:background-size .22s cubic-bezier(.65,.05,.35,1)}
-.cta:hover,.cta:focus-visible{background-size:100% 100%}
+  /* 액체 필: 파랑이 바닥에서 파도처럼 차오른다. 몸체 1장 + 반원 물마루 타일 2장
+     (반 위상)을 같은 거리만큼 위로 슬라이드 — 배경 레이어라 텍스트를 못 덮는다.
+     오버슈트 베지어로 만수 순간 물마루가 위로 살짝 넘쳤다 가라앉는다 */
+  background-image:
+    radial-gradient(10px 9px at 50% 100%, var(--blue) 98%, transparent 100%),
+    radial-gradient(14px 11px at 50% 100%, var(--blue) 98%, transparent 100%),
+    linear-gradient(var(--blue),var(--blue));
+  background-repeat:repeat-x,repeat-x,no-repeat;
+  background-size:26px 10px, 38px 12px, 100% 100%;
+  background-position:0 63px, 12px 61px, 0 72px;
+  transition:background-position .5s cubic-bezier(.22,.68,.3,1)}
+.cta:hover,.cta:focus-visible{background-position:0 -12px, 12px -14px, 0 0}
 .cta-mail{font-family:var(--mono); font-size:12.5px; color:var(--muted)}
 
 /* ============ 문의 ============ */
