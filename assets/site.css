@@ -320,7 +320,8 @@ h1{font-family:var(--disp); font-weight:800; margin:0;
 /* ---- 숨 (breather): 섹션 사이 여백 + 먹줄 토막이 지나가며 그어짐 (v1.1) ---- */
 .breather{height:72vh}
 .br-in{position:relative; height:100%}
-.br-line{position:absolute; left:62%; top:14vh; width:5px; height:44vh; background:var(--blue); opacity:.85;
+/* 위 섹션의 검은 경계선에서 나와 아래 섹션에 닿을 때까지 — 사이를 완전히 잇는 실 */
+.br-line{position:absolute; left:62%; top:0; bottom:0; width:5px; background:var(--blue); opacity:.85;
   transform:scaleY(0); transform-origin:top}
 .br-line::before{content:""; position:absolute; left:-10px; top:0; bottom:0; width:25px;
   background:repeating-linear-gradient(180deg, var(--blue) 0 2px, transparent 2px 88px)}
