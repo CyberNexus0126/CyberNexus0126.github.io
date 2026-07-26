@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stockbook — 재고 관리 데스크톱 앱 | 벼리</title>
+<meta name="description" content="입고·출고·조정을 장부로 기록해 재고를 지키는 윈도우 데스크톱 앱. Tauri 2 · Rust · SQLite 케이스 스터디.">
+<meta property="og:title" content="Stockbook — 재고 관리 데스크톱 앱">
+<meta property="og:description" content="재고는 눈이 아니라 장부로 지킵니다. 완전 오프라인 윈도우 앱.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://byeol.dev/stockbook/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap">
+    <a class="mark" href="../">BYEORI</a>
+    <nav class="topnav">
+      <a href="../#works">작업물</a><a href="../#method">작업 방식</a><a href="../#contact">문의</a>
+    </nav>
+  </div>
+</header>
+
+<section class="case-hero case-hero-long">
+  <div class="wrap">
+    <p class="eyebrow"><span>CASE STUDY</span><span class="r">/stockbook</span></p>
+    <h1>Stockbook</h1>
+    <p class="h1-sub">입고·출고·조정을 장부로 기록해 재고를 지키는 윈도우 데스크톱 앱</p>
+  </div>
+</section>
+
+<section class="case-block">
+  <div class="wrap">
+    <div class="sec-head"><span>결과물</span><span class="r">실제 구동 화면 5장</span></div>
+    <p class="case-demo mono">설치해서 쓰는 윈도우 앱이라 웹 데모 대신 실제 구동 화면을 올립니다. 아래는 다크 테마입니다.</p>
+    <div class="shots">
+      <figure class="shot">
+        <img src="shots/01-dashboard.webp" alt="Stockbook 대시보드 — 재고 자산 가치, 안전재고 미달, 오늘 입출고 통계와 최근 14일 입출고 막대그래프, 최근 이동 내역 원장 테이블" loading="lazy" width="1568" height="725">
+        <figcaption class="mono">대시보드 — 재고 자산·오늘 입출고·최근 14일 추이가 열자마자 보입니다</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="shots/02-products.webp" alt="Stockbook 상품 관리 — 상품명·SKU·카테고리·매입가·판매가·현재고·안전재고를 붉은 괘선 원장 테이블로 관리" loading="lazy" width="1568" height="726">
+        <figcaption class="mono">상품 관리 — 현재고는 저장된 숫자가 아니라 이동 원장을 집계한 값입니다</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="shots/03-barcode.webp" alt="Stockbook 입출고 등록 — 바코드 스캔으로 상품이 자동 선택된 입고 폼과 오늘 등록한 이동 목록" loading="lazy" width="1568" height="726">
+        <figcaption class="mono">입출고 등록 — 바코드를 스캔하면 상품이 자동으로 선택됩니다</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="shots/04-ledger.webp" alt="Stockbook 이동 원장 — 기간·상품·유형·거래처 필터와 입고·출고 도장 뱃지가 있는 원장 테이블, CSV 내보내기" loading="lazy" width="1568" height="726">
+        <figcaption class="mono">이동 원장 — 기간·상품·유형·거래처로 조회하고 CSV로 내보냅니다</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="shots/05-partners.webp" alt="Stockbook 거래처 관리 — 매입처·판매처 구분과 이동 건수, 거래 이력 보기" loading="lazy" width="1568" height="726">
+        <figcaption class="mono">거래처 관리 — 매입처·판매처 등록과 거래 이력 조회</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="case-block">
+  <div class="wrap">
+    <div class="sec-head"><span>문제</span><span class="r">어떤 문제를 풀었나</span></div>
+    <div class="case-sec">
+      <p>작은 매장과 창고의 재고는 눈대중과 엑셀로 관리되기 쉽습니다. 현재고 칸을 손으로 고치는 순간 실제 입출고 이력과 숫자가 어긋나기 시작하고, 어긋난 재고는 발주 실수와 품절로 이어집니다. Stockbook은 현재고를 저장하는 칸 자체를 없앴습니다. 입고·출고·조정을 기록한 이동 원장을 그때그때 집계해 현재고를 계산하므로, 이력과 숫자가 어긋날 길이 구조적으로 없습니다. 재고는 눈이 아니라 장부로 지킵니다.</p>
+    </div>
+  </div>
+</section>
+
+<section class="case-block">
+  <div class="wrap">
+    <div class="sec-head"><span>구현</span><span class="r">어떻게 만들었나</span></div>
+    <div class="case-sec">
+      <p>Tauri 2(Rust)와 SQLite, 바닐라 TypeScript로 만들었습니다. 계정도 클라우드도 네트워크 호출도 없는 완전 로컬 앱이라 재고 데이터가 컴퓨터 밖으로 나가지 않고, MSI·NSIS 설치 파일로 배포합니다. 첫 실행이면 예시 데이터(상품 42종, 3개월치 입출고)가 자동으로 채워져 설치 직후부터 화면이 살아 있습니다.</p>
+      <p>현재고 계산은 두 경로를 씁니다. 출고 초과처럼 입력을 막아야 하는 안전 검증은 순수 함수로, 목록과 대시보드는 SQL 집계로 계산하고, 두 경로가 항상 같은 값을 내는지 Rust 테스트 36개로 교차 검증합니다. CSV는 한글 엑셀에서 바로 열리도록 UTF-8 BOM으로 내보내고, 가져오기는 행 단위로 오류를 수집해 한 행의 실수가 전체를 중단시키지 않게 했습니다. 사용자 입력이 HTML로 해석되는 경로를 없애기 위해 innerHTML을 쓰지 않는 DOM 헬퍼로만 화면을 구성했습니다.</p>
+      <p>디자인은 "종이 원장"입니다. 장부지 바탕과 먹, 숫자 컬럼 왼쪽의 붉은 세로 괘선, 표 아래의 마감 이중선, 인주 도장풍 상태 뱃지 — 실제 장부의 문법을 그대로 옮겼습니다. 폰트는 로컬 번들이라 오프라인에서도 동일하게 보이고, 라이트·다크 테마를 지원합니다.</p>
+    </div>
+  </div>
+</section>
+
+<section class="case-block">
+  <div class="wrap">
+    <div class="sec-head"><span>기술 스택</span><span class="r">사용한 기술</span></div>
+    <div class="tech-chips">
+      <span class="chip">Tauri 2</span><span class="chip">Rust</span><span class="chip">SQLite</span><span class="chip">TypeScript</span><span class="chip">완전 오프라인</span>
+    </div>
+  </div>
+</section>
+
+<section class="case-block">
+  <div class="wrap">
+    <a class="back-link" href="../#works">← 작업물 색인으로</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap"><span>© 벼리</span><span>만든 것과 해결한 문제만 적습니다</span></div>
+</footer>
+
+</body>
+</html>

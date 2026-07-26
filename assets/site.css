@@ -251,6 +251,8 @@ h1{font-family:var(--disp); font-weight:800; margin:0;
 /* ---- 케이스 스터디 ---- */
 .case-hero{border-bottom:1px solid var(--ink)}
 .case-hero .wrap{padding-top:clamp(40px,7vh,84px); padding-bottom:clamp(30px,5vh,56px)}
+/* 9자 이상 긴 제목용 — Syne 대문자는 글자당 거의 1em이라 기본 h1 크기로는 랩을 넘친다 */
+.case-hero-long h1{font-size:clamp(48px,9.2vw,132px)}
 .case-block{border-bottom:1px solid var(--ink)}
 .case-block:last-of-type{border-bottom:none}
 .case-block .wrap{padding-top:clamp(26px,4vh,46px); padding-bottom:clamp(26px,4vh,46px)}
