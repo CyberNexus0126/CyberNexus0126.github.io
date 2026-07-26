@@ -38,6 +38,7 @@
       rule: sec.querySelector('.itl-rule')
     };
   });
+  var brs = document.querySelectorAll('.breather');
   var track = document.querySelector('.book-track');
   var leaves = [
     {el: document.querySelector('.leaf-1'), a:.06, b:.27, zi:9, zo:1},
@@ -74,6 +75,12 @@
         I.words[i].style.opacity = String(.1 + .9 * wt);
       }
       if (I.rule) I.rule.style.transform = 'scaleY(' + Math.min(1, Math.max(0, ip / .8)) + ')';
+    });
+    brs.forEach(function(B){
+      var br = B.getBoundingClientRect();
+      var bp = Math.min(1, Math.max(0, (innerHeight - br.top) / (innerHeight + br.height)));
+      var line = B.querySelector('.br-line');
+      if (line) line.style.transform = 'scaleY(' + Math.min(1, Math.max(0, (bp - .25) / .5)) + ')';
     });
   }
   addEventListener('scroll', function(){ if(!ticking){ticking=true; requestAnimationFrame(draw);} }, {passive:true});

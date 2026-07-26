@@ -313,3 +313,21 @@ h1{font-family:var(--disp); font-weight:800; margin:0;
 /* 밀도 완화 (v1.1): 섹션 내부 호흡 */
 .svc{padding-top:38px; padding-bottom:46px}
 .row{padding-top:32px; padding-bottom:32px}
+
+/* ---- 숨 (breather): 섹션 사이 여백 + 먹줄 토막이 지나가며 그어짐 (v1.1) ---- */
+.breather{height:62vh; display:grid; place-items:center}
+.br-line{width:3px; height:44vh; background:var(--blue); opacity:.85;
+  transform:scaleY(0); transform-origin:top}
+@supports ((animation-timeline: scroll()) and (animation-range: 0% 100%)){
+  .breather{view-timeline:--br block}
+  .br-line{animation:itl-draw auto linear both; animation-timeline:--br;
+    animation-range:entry 25% cover 75%}
+}
+@media (max-width:700px){
+  .breather{height:16vh}
+  .br-line{display:none}
+}
+@media (prefers-reduced-motion: reduce){
+  .breather{height:16vh}
+  .br-line{display:none}
+}
