@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# DealDesk 라이브 데모의 정적 빌드 산출물 — 색인될 이유가 없다
+Disallow: /dealdesk/app/
+
+Sitemap: https://byeol.dev/sitemap.xml

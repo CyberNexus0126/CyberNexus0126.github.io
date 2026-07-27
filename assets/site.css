@@ -87,8 +87,15 @@ footer .wrap{display:flex; justify-content:space-between; padding-top:16px; padd
 .eyebrow{display:flex; justify-content:space-between; align-items:baseline;
   font-family:var(--mono); font-size:12px; letter-spacing:.12em; color:var(--ink-2); margin:0 0 clamp(22px,4vh,44px)}
 .eyebrow .r{color:var(--muted); letter-spacing:0}
+/* 워드마크는 한 단어라 줄바꿈이 없다. 뷰포트 기준 clamp 로 키우면 랩 안쪽 폭과
+   무관하게 커져서 넘친다(실제로 DealDesk·Stockbook 이 데스크톱에서도 가로 스크롤을 만들었다).
+   Syne 대문자는 글자마다 폭 차이가 커서 글자 수로도 못 맞춘다 —
+   BYEORI 6.2em · ASKLINE 7.0em · DEALDESK 9.1em · STOCKBOOK 10.8em.
+   그래서 각 페이지가 자기 단어의 총 em 폭을 --mark-w 로 주고, 랩 안쪽 폭을 그 값으로 나눈다. */
 h1{font-family:var(--disp); font-weight:800; margin:0;
-  font-size:clamp(64px,12.5vw,176px); line-height:.94; letter-spacing:-.025em; text-transform:uppercase}
+  --mark-avail:calc(min(1240px, 100vw - 16px) - 2 * clamp(18px,4vw,48px));
+  font-size:min(176px, calc(var(--mark-avail) / var(--mark-w, 9.5)));
+  line-height:.94; letter-spacing:-.025em; text-transform:uppercase}
 .h1-sub{font-weight:800; font-size:clamp(24px,3.6vw,44px); letter-spacing:-.03em; margin:18px 0 0; line-height:1.15}
 .hero-low{display:flex; flex-wrap:wrap; gap:28px; justify-content:space-between; align-items:flex-end;
   margin-top:clamp(30px,5vh,58px)}
@@ -285,8 +292,7 @@ h1{font-family:var(--disp); font-weight:800; margin:0;
 /* ---- 케이스 스터디 ---- */
 .case-hero{border-bottom:1px solid var(--ink)}
 .case-hero .wrap{padding-top:clamp(40px,7vh,84px); padding-bottom:clamp(30px,5vh,56px)}
-/* 9자 이상 긴 제목용 — Syne 대문자는 글자당 거의 1em이라 기본 h1 크기로는 랩을 넘친다 */
-.case-hero-long h1{font-size:clamp(48px,9.2vw,132px)}
+/* 긴 제목 대응은 h1 의 --mark-w 가 대신한다. .case-hero-long 은 더 이상 필요 없다 */
 .case-block{border-bottom:1px solid var(--ink)}
 .case-block:last-of-type{border-bottom:none}
 .case-block .wrap{padding-top:clamp(26px,4vh,46px); padding-bottom:clamp(26px,4vh,46px)}
@@ -400,7 +406,7 @@ h1{font-family:var(--disp); font-weight:800; margin:0;
 
 /* 히어로 확대 (v1.1): 첫 화면을 채우도록 — 먹줄 축·하위 섹션 불변 */
 .hero .wrap{padding-top:clamp(56px,10vh,120px); padding-bottom:clamp(48px,9vh,110px)}
-.hero h1{font-size:clamp(72px,13.5vw,220px)}
+.hero h1{font-size:min(220px, calc(var(--mark-avail) / var(--mark-w, 6.43)))}
 .hero .h1-sub{font-size:clamp(28px,4.2vw,54px)}
 .hero .eyebrow{margin-bottom:clamp(28px,5vh,56px)}
 .hero .hero-low{margin-top:clamp(40px,7vh,80px)}
