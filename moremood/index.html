@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>More Mood — 패션 이커머스 | 벼리</title>
+<meta name="description" content="토스페이먼츠 테스트 결제로 구매 전 구간이 실제 동작하는 패션 이커머스. Next.js 16 · Neon · Prisma 7 · Auth.js v5 케이스 스터디.">
+<meta property="og:title" content="More Mood — 패션 이커머스">
+<meta property="og:description" content="금액도 재고도 서버가 정합니다. 브라우저가 보낸 값은 믿지 않습니다.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://byeol.dev/moremood/">
+<meta property="og:site_name" content="벼리">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:image" content="https://byeol.dev/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="BYEORI — 혼자서 끝까지 만듭니다">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="canonical" href="https://byeol.dev/moremood/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap">
+    <a class="mark" href="../">BYEORI</a>
+    <nav class="topnav">
+      <a href="../#works">작업물</a><a href="../#method">작업 방식</a><a href="../#contact">문의</a>
+    </nav>
+  </div>
+</header>
+
+<section class="case-hero">
+  <div class="wrap">
+    <p class="eyebrow"><span>CASE STUDY</span><span class="r">/moremood</span></p>
+    <!-- --mark-w = 'MORE MOOD' 한 줄 폭 실측 10.909em + 4% 여유. 공백이 있어 자유 배치면 두 줄로 접힌다 -->
+    <h1 style="--mark-w:11.35">More Mood</h1>
+    <p class="h1-sub">토스페이먼츠 테스트 결제로 구매 전 구간이 실제 동작하는 패션 이커머스</p>
+  </div>
+</section>
+
+<section class="case-block">
+  <div class="wrap">
+    <div class="sec-head"><span>미리보기</span><span class="r">스크린샷</span></div>
+    <div class="shots">
+      <figure class="shot">
+        <img src="shots/01-home.webp" alt="More Mood 홈 — 상단에 전체·아우터·상의·하의·원피스 메뉴가 있고, 흑백 톤 아우터 착용 사진 아래 '분위기를 입다' 문구가 있는 매장 첫 화면" loading="lazy" width="1440" height="900">
+        <figcaption class="mono">홈 — 아우터·상의·하의·원피스로 나뉜 매장 첫 화면</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="shots/02-products.webp" alt="More Mood 전체 상품 — 카테고리 탭과 가격대 필터, 최신순·낮은 가격순·높은 가격순 정렬이 있고 18개 상품이 그리드로 나열된 목록" loading="lazy" width="1440" height="900">
+        <figcaption class="mono">전체 상품 — 카테고리·가격대·정렬을 조합해 18개를 추립니다</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="shots/03-detail.webp" alt="More Mood 상품 상세 — 크롭 레더 재킷 349,000원, 썸네일 3장과 색상 두 가지·사이즈 S·M·L 선택, 장바구니 담기와 위시리스트 버튼, 배송·반품 안내" loading="lazy" width="1440" height="900">
+        <figcaption class="mono">상품 상세 — 색상과 사이즈를 고르면 그 조합이 서버로 보내는 유일한 값입니다</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="shots/05-admin-dashboard.webp" alt="More Mood 관리자 대시보드 — 최근 14일 매출 합계와 하루 최대 매출, 결제완료·결제대기 건수 카드, 14일 매출 막대그래프, 주문 상태별 건수, 인기 상품 순위표" loading="lazy" width="1440" height="900">
+        <figcaption class="mono">관리자 대시보드 — 최근 14일 매출과 주문 상태, 인기 상품을 한 화면에서 봅니다</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="shots/06-admin-orders.webp" alt="More Mood 관리자 주문 관리 — 상태별 탭과 주문번호·주문일시·고객·상품·결제금액·상태가 있는 주문 목록, 취소됨·배송중·배송완료 상태 뱃지" loading="lazy" width="1440" height="900">
+        <figcaption class="mono">주문 관리 — 결제대기부터 배송완료·취소됨까지 상태를 여기서 바꿉니다</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="case-block">
+  <div class="wrap">
+    <div class="sec-head"><span>문제</span><span class="r">어떤 문제를 풀었나</span></div>
+    <div class="case-sec">
+      <p>이커머스에는 브라우저를 믿으면 안 되는 지점이 세 군데 있습니다. 결제 승인은 시크릿 키로 서버가 직접 호출해야 하고, 주문 금액은 브라우저가 보낸 값을 그대로 쓰면 안 되고, 재고는 동시에 들어온 주문을 트랜잭션으로 막아야 합니다. 셋 다 정적 사이트로는 되지 않습니다. 서버에서 도는 코드가 반드시 있어야 합니다.</p>
+      <p>이 작업을 고른 이유이기도 합니다. 앞선 세 건은 정적 배포와 Supabase(DealDesk), Tauri와 Rust(Stockbook), Python 봇(Askline)이라 서버를 직접 쥐고 도는 구간이 없었습니다. 서버가 값을 정해야만 성립하는 문제를 일부러 골랐습니다.</p>
+    </div>
+  </div>
+</section>
+
+<section class="case-block">
+  <div class="wrap">
+    <div class="sec-head"><span>구현</span><span class="r">어떻게 만들었나</span></div>
+    <div class="case-sec">
+      <p>클라이언트가 서버로 보내는 것은 <code>variantId</code>와 수량뿐입니다. 가격은 서버가 DB에서 조회해 계산합니다. 계산이 일어나는 지점을 함수 하나로 모아둔 덕분에 장바구니 화면과 결제창이 서로 다른 금액을 말할 수 없습니다.</p>
+      <p>토스 리다이렉트로 돌아온 금액은 DB에 적힌 주문 금액과 대조한 뒤에만 승인 API를 호출합니다. 이 대조가 없으면 브라우저에서 금액을 고친 결제가 그대로 통과합니다. 결제는 되돌리기 어려운 동작이라 승인 직전에 한 번 더 막았습니다.</p>
+      <p>재고 차감은 조건부 UPDATE 한 문장입니다 — <code>WHERE id = ? AND stock &gt;= ?</code>. 읽고, 확인하고, 쓰는 순서로 짜면 확인과 쓰기 사이에 틈이 생겨 같은 재고가 두 번 팔립니다. 한 문장에는 그 틈이 없습니다. 영향받은 행이 0이면 롤백하고 결제를 취소합니다.</p>
+      <p>관리자 권한은 세션이 아니라 요청이 들어온 시점의 DB로 판정합니다. JWT는 최대 30일까지 낡을 수 있어서, 세션에 담긴 역할만 보면 권한을 회수한 뒤에도 예전 토큰이 통과합니다.</p>
+    </div>
+  </div>
+</section>
+
+<section class="case-block">
+  <div class="wrap">
+    <div class="sec-head"><span>기술 스택</span><span class="r">사용한 기술</span></div>
+    <div class="tech-chips">
+      <span class="chip">Next.js 16</span><span class="chip">App Router</span><span class="chip">Neon Postgres</span><span class="chip">Prisma 7</span><span class="chip">Auth.js v5</span><span class="chip">토스페이먼츠</span>
+    </div>
+  </div>
+</section>
+
+<section class="case-block">
+  <div class="wrap">
+    <div class="sec-head"><span>링크</span><span class="r">데모</span></div>
+    <p class="case-demo mono"><a class="back-link" href="app/">직접 써보기 → /moremood/app</a></p>
+    <p class="case-demo mono">고객 데모 demo@moremood.demo / demo1234 — 주문 이력이 있어 마이페이지와 리뷰를 볼 수 있습니다.</p>
+    <p class="case-demo mono">관리자 데모 admin@moremood.demo / demo1234 — /moremood/app/admin 에서 주문 상태 변경·상품·쿠폰·리뷰를 관리합니다.</p>
+    <p class="case-demo mono">두 계정 모두 로그인 화면에서 자동 채우기를 누르면 됩니다. 결제는 토스페이먼츠 테스트 모드라 실제로 청구되지 않습니다.</p>
+  </div>
+</section>
+
+<section class="case-block">
+  <div class="wrap">
+    <a class="back-link" href="../#works">← 작업물 색인으로</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap"><span>© 벼리</span><span>만든 것과 해결한 문제만 적습니다</span></div>
+</footer>
+
+</body>
+</html>
